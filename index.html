@@ -259,6 +259,13 @@ function loadReport(file) {
 function onFrameLoad() {
   document.getElementById('loading-bar').classList.remove('show');
   document.getElementById('report-frame').style.display = 'block';
+  // 手机端：给日报表格加上横向滚动
+  try {
+    var doc = document.getElementById('report-frame').contentDocument;
+    var s = doc.createElement('style');
+    s.textContent = '.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{min-width:520px}';
+    doc.head.appendChild(s);
+  } catch(e) {}
 }
 
 function navDate(direction) {
