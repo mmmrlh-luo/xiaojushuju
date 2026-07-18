@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-07-15 充电站运营日报 | 电士多</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#1a1a1a;line-height:1.5;padding:24px}
+.container{max-width:860px;margin:0 auto}
+.header{background:linear-gradient(135deg,#1a56db 0%,#3b82f6 100%);color:#fff;padding:24px 28px;border-radius:12px;margin-bottom:20px}
+.header .date{font-size:14px;opacity:.85;margin-bottom:4px}
+.header h1{font-size:22px;font-weight:700}
+.header .sub{font-size:13px;opacity:.75;margin-top:2px}
+.overview{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.overview-card{flex:1;min-width:180px;background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.overview-card .label{font-size:12px;color:#888;margin-bottom:6px}
+.overview-card .value{font-size:22px;font-weight:700;color:#1a56db}
+.overview-card .detail{font-size:12px;color:#666;margin-top:4px}
+.up{color:#d92d20}
+.down{color:#137333}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;margin-right:4px}
+.tag.blue{background:#e8f0fe;color:#1a56db}
+.tag.orange{background:#fff4e5;color:#c76b11}
+.tag.green{background:#e6f4ea;color:#137333}
+.tag.red{background:#fde8e8;color:#d92d20}
+.section{margin-bottom:20px}
+.section-title{font-size:15px;font-weight:700;padding:12px 16px;border-radius:8px 8px 0 0;display:flex;align-items:center;gap:6px}
+.section-title.rise{background:#fef2e8;color:#c76b11}
+.section-title.fall{background:#fef0ef;color:#d92d20}
+.section-title.fleet{background:#f0f4ff;color:#4a6cf7}
+.table-wrap{background:#fff;border-radius:0 0 8px 8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;border-collapse:collapse}
+thead th{font-size:11px;color:#888;font-weight:500;text-align:left;padding:10px 12px;background:#fafafa;border-bottom:1px solid #eee}
+tbody td{font-size:13px;padding:8px 12px;border-bottom:1px solid #f5f5f5}
+tbody tr:last-child td{border-bottom:none}
+td.station{font-weight:500;color:#333}
+td.pct-up{color:#d92d20;font-weight:600}
+td.pct-down{color:#137333;font-weight:600}
+td.kw{font-family:"SF Mono",Consolas,monospace;text-align:right}
+td.src{font-size:11px;color:#888}
+.badge{display:inline-block;background:#fde8e8;color:#d92d20;font-size:10px;padding:1px 6px;border-radius:3px;margin-left:4px;font-weight:600}
+.alert-box{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:20px}
+.alert-box .title{font-size:14px;font-weight:700;color:#d92d20;margin-bottom:8px}
+.alert-item{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px}
+.alert-dot{width:8px;height:8px;background:#d92d20;border-radius:50%;flex-shrink:0}
+.alert-item .name{font-weight:500}
+.alert-item .change{color:#888;font-size:12px}
+.fleet-card{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid #f0f0f0}
+.fleet-card:last-child{border-bottom:none}
+.fleet-arrow{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;font-weight:700}
+.fleet-arrow.rise{background:#fef2e8;color:#d92d20}
+.fleet-arrow.fall{background:#fef0ef;color:#137333}
+.fleet-body{flex:1}
+.fleet-body .company{font-weight:600;font-size:14px}
+.fleet-body .summary{font-size:13px;margin-top:2px}
+.fleet-body .detail{font-size:11px;color:#999;margin-top:4px}
+.station-tag{display:inline-block;background:#f5f5f5;padding:1px 6px;border-radius:3px;font-size:10px;color:#666;margin-right:4px;margin-top:2px}
+.footer{text-align:center;color:#aaa;font-size:12px;padding:12px}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><div class="date">2026-07-15</div><h1>充电站运营日报</h1><div class="sub">电士多</div></div>
+<div class="overview">
+<div class="overview-card"><div class="label">总充电量</div><div class="value">90,851<span style="font-size:14px;font-weight:400"> 度</span></div>
+<div class="detail"><span class="down">▼ -3,188 度 (-3%)</span></div>
+</div>
+<div class="overview-card"><div class="label">谷电 / 平电 / 峰电</div><div class="value">58% / 36% / 4%</div>
+<div class="detail" style="margin-top:6px"><span class="tag blue">谷 52,510度</span><span class="tag orange">平 32,669度</span><span class="tag red">峰 4,038度</span></div></div>
+<div class="overview-card"><div class="label">小桔 / 清源 / 其他</div><div class="value">77% / 12% / 11%</div>
+<div class="detail" style="margin-top:6px"><span class="tag blue">小桔 69,544度</span><span class="tag green">清源 11,307度</span><span class="tag orange">其他 10,000度</span></div></div>
+</div>
+<div class="section"><div class="section-title rise">🔺 场站上涨（>5%）</div><div class="table-wrap"><table>
+<thead><tr><th>场站</th><th>涨跌</th><th>今日(度)</th><th>昨日(度)</th><th>变化(度)</th><th>渠道贡献</th></tr></thead><tbody>
+<tr><td class="station">金诺科技园重卡超充站 <span class="badge">!</span></td><td class="pct-up">+72%</td><td class="kw">4,562</td><td class="kw">2,658</td><td class="kw up">+1,904</td><td class="src">小桔-8%  清源+88%  其他-8%</td></tr>
+<tr><td class="station">联丰科技园重卡超充站 <span class="badge">!</span></td><td class="pct-up">+24%</td><td class="kw">1,278</td><td class="kw">1,030</td><td class="kw up">+248</td><td class="src">小桔+30%  其他-6%</td></tr>
+<tr><td class="station">萝岗香雪超充站</td><td class="pct-up">+20%</td><td class="kw">4,021</td><td class="kw">3,354</td><td class="kw up">+666</td><td class="src">小桔+19%  其他+1%</td></tr>
+<tr><td class="station">广明中心超充站</td><td class="pct-up">+11%</td><td class="kw">4,088</td><td class="kw">3,668</td><td class="kw up">+420</td><td class="src">小桔+17%  其他-5%</td></tr>
+<tr><td class="station">南大干线化龙超充站（有大车车位）</td><td class="pct-up">+7%</td><td class="kw">15,095</td><td class="kw">14,080</td><td class="kw up">+1,015</td><td class="src">清源+13%  其他-6%</td></tr>
+</tbody></table></div></div>
+<div class="section"><div class="section-title fall">🔻 场站下跌（>5%）</div><div class="table-wrap"><table>
+<thead><tr><th>场站</th><th>涨跌</th><th>今日(度)</th><th>昨日(度)</th><th>变化(度)</th><th>渠道贡献</th></tr></thead><tbody>
+<tr><td class="station">正果寺超充站 <span class="badge">!</span></td><td class="pct-down">-31%</td><td class="kw">2,170</td><td class="kw">3,144</td><td class="kw down">-974</td><td class="src">小桔-29%  其他-2%</td></tr>
+<tr><td class="station">长平地铁超充站（有17米重卡车位） <span class="badge">!</span></td><td class="pct-down">-30%</td><td class="kw">1,128</td><td class="kw">1,609</td><td class="kw down">-481</td><td class="src">小桔-12%  清源-18%</td></tr>
+<tr><td class="station">金诺科技园充电站（有大车车位） <span class="badge">!</span></td><td class="pct-down">-22%</td><td class="kw">5,606</td><td class="kw">7,148</td><td class="kw down">-1,542</td><td class="src">小桔+19%  清源-40%  其他-1%</td></tr>
+<tr><td class="station">茶博城超充站</td><td class="pct-down">-19%</td><td class="kw">3,547</td><td class="kw">4,389</td><td class="kw down">-842</td><td class="src">小桔-15%  其他-4%</td></tr>
+<tr><td class="station">恒邦科技园充电站</td><td class="pct-down">-17%</td><td class="kw">5,183</td><td class="kw">6,243</td><td class="kw down">-1,060</td><td class="src">小桔-14%  清源-4%  其他+1%</td></tr>
+<tr><td class="station">青年创业科技园超充站</td><td class="pct-down">-13%</td><td class="kw">2,520</td><td class="kw">2,906</td><td class="kw down">-386</td><td class="src">小桔-12%  其他-2%</td></tr>
+<tr><td class="station">开创大道超充站</td><td class="pct-down">-11%</td><td class="kw">6,257</td><td class="kw">7,060</td><td class="kw down">-803</td><td class="src">小桔-10%  清源-6%  其他+4%</td></tr>
+<tr><td class="station">番禺市莲路永旺超充站</td><td class="pct-down">-9%</td><td class="kw">7,816</td><td class="kw">8,590</td><td class="kw down">-774</td><td class="src">小桔-7%  其他-2%</td></tr>
+<tr><td class="station">科学城发展大厦超充站</td><td class="pct-down">-9%</td><td class="kw">3,809</td><td class="kw">4,199</td><td class="kw down">-390</td><td class="src">小桔-3%  清源+1%  其他-7%</td></tr>
+<tr><td class="station">兴圃大道超充站</td><td class="pct-down">-9%</td><td class="kw">1,820</td><td class="kw">2,001</td><td class="kw down">-181</td><td class="src">小桔-8%  其他-1%</td></tr>
+</tbody></table></div></div>
+<div class="alert-box"><div class="title">⚠️ 异常提醒（波动 >20%）</div>
+<div class="alert-item"><span class="alert-dot"></span><span class="change">电士多-金诺科技园充电站（有大车车位） 充电量环比-1,542 (-22%)</span></div>
+<div class="alert-item"><span class="alert-dot"></span><span class="change">电士多-金诺科技园重卡超充站 充电量环比+1,904 (+72%)</span></div>
+<div class="alert-item"><span class="alert-dot"></span><span class="change">电士多-正果寺超充站 充电量环比-974 (-31%)</span></div>
+<div class="alert-item"><span class="alert-dot"></span><span class="change">电士多-联丰科技园重卡超充站 充电量环比+248 (+24%)</span></div>
+<div class="alert-item"><span class="alert-dot"></span><span class="change">电士多-长平地铁超充站（有17米重卡车位） 充电量环比-481 (-30%)</span></div>
+</div>
+<div class="section"><div class="section-title fleet">🚛 车队异常波动（按公司合计）</div><div class="table-wrap">
+<div class="fleet-card"><div class="fleet-arrow rise">▲</div><div class="fleet-body">
+<div class="company">广州长鸿物流有限公司</div>
+<div class="summary"><span style="color:#137333">+350%</span> · <b>2,483</b> 度 (昨 552) · <span style="color:#d92d20">+1,931</span></div>
+<div class="detail"><span class="station-tag">电士多-金诺科技园重卡超充站 +1,931度</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow rise">▲</div><div class="fleet-body">
+<div class="company">广州市任邦物流服务有限公司</div>
+<div class="summary"><span style="color:#137333">+568%</span> · <b>2,130</b> 度 (昨 319) · <span style="color:#d92d20">+1,811</span></div>
+<div class="detail"><span class="station-tag">电士多-南大干线化龙超充站（有大车车位） +1,811度</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow fall">▼</div><div class="fleet-body">
+<div class="company">广州恒创汽车服务有限公司</div>
+<div class="summary"><span style="color:#d92d20">-64%</span> · <b>1,495</b> 度 (昨 4,203) · <span style="color:#137333">-2,708</span></div>
+<div class="detail"><span class="station-tag">电士多-金诺科技园充电站（有大车车位） -2,708度</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow fall">▼</div><div class="fleet-body">
+<div class="company">广州莘文环保科技有限公司</div>
+<div class="summary"><span style="color:#d92d20">-29%</span> · <b>1,042</b> 度 (昨 1,462) · <span style="color:#137333">-420</span></div>
+<div class="detail"><span class="station-tag">电士多-开创大道超充站 -420度</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow rise">▲</div><div class="fleet-body">
+<div class="company">广州市增濠物流有限公司（开创大道）</div>
+<div class="summary"><span style="color:#137333">NEW</span> · <b>499</b> 度 (昨 -) · <span style="color:#d92d20">+499</span></div>
+<div class="detail"><span class="station-tag">电士多-金诺科技园重卡超充站 NEW</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow fall">▼</div><div class="fleet-body">
+<div class="company">广州安迅三通运输有限公司（汇霖充电站）</div>
+<div class="summary"><span style="color:#d92d20">-52%</span> · <b>423</b> 度 (昨 871) · <span style="color:#137333">-449</span></div>
+<div class="detail"><span class="station-tag">电士多-汇霖科技园充电站（有大车车位） -91度</span><span class="station-tag">电士多-金诺科技园充电站（有大车车位） -358度</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow rise">▲</div><div class="fleet-body">
+<div class="company">易和通（汇霖、金诺充电站）</div>
+<div class="summary"><span style="color:#137333">+209%</span> · <b>363</b> 度 (昨 117) · <span style="color:#d92d20">+245</span></div>
+<div class="detail"><span class="station-tag">电士多-汇霖科技园充电站（有大车车位） +245度</span></div>
+</div></div>
+<div class="fleet-card"><div class="fleet-arrow fall">▼</div><div class="fleet-body">
+<div class="company">金玉旅运（恒邦充电站）</div>
+<div class="summary"><span style="color:#d92d20">-38%</span> · <b>336</b> 度 (昨 540) · <span style="color:#137333">-204</span></div>
+<div class="detail"><span class="station-tag">电士多-恒邦科技园充电站 -204度</span></div>
+</div></div>
+</div></div>
+<div class="footer">电士多 · 充电站运营日报 · 2026-07-15</div>
+</div></body></html>
