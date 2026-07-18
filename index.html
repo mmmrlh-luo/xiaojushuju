@@ -95,6 +95,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   .main-header .btn-prev::before{content:'\2190';margin-right:0}
   .main-header .btn-next::after{content:'\2192';margin-left:0}
 }
+
+/* 二维码按钮 */
+.qr-btn{position:fixed;bottom:20px;right:20px;width:44px;height:44px;border-radius:50%;background:#1a56db;color:#fff;border:none;cursor:pointer;font-size:20px;box-shadow:0 2px 12px rgba(26,86,219,.35);z-index:15;display:flex;align-items:center;justify-content:center;transition:transform .15s,box-shadow .15s}
+.qr-btn:hover{transform:scale(1.08);box-shadow:0 4px 18px rgba(26,86,219,.45)}
+.qr-btn:active{transform:scale(.95)}
+.qr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;align-items:center;justify-content:center}
+.qr-modal.show{display:flex}
+.qr-card{background:#fff;border-radius:16px;padding:28px 24px 24px;text-align:center;max-width:320px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,.15);position:relative}
+.qr-card .close{position:absolute;right:14px;top:14px;width:32px;height:32px;border-radius:50%;border:1px solid #e5e7eb;background:#fff;font-size:16px;cursor:pointer;color:#888}
+.qr-card img{width:200px;height:200px;margin:8px 0 12px}
+.qr-card .url{font-size:13px;color:#555;word-break:break-all}
+.qr-card .tip{font-size:11px;color:#aaa;margin-top:6px}
+
+@media (max-width:1024px){
+  .qr-btn{bottom:14px;right:14px;width:40px;height:40px;font-size:18px}
+}
 </style>
 </head>
 <body>
@@ -135,6 +151,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
       <iframe id="report-frame" style="display:none" onload="onFrameLoad()"></iframe>
     </div>
   </main>
+</div>
+
+<!-- 二维码 -->
+<button class="qr-btn" onclick="showQR()" title="手机扫码打开">&#9588;</button>
+<div class="qr-modal" id="qr-modal" onclick="hideQR(event)">
+  <div class="qr-card" onclick="event.stopPropagation()">
+    <button class="close" onclick="hideQR()">&#10005;</button>
+    <div style="font-size:15px;font-weight:600;color:#333;margin-bottom:4px;">手机扫码打开看板</div>
+    <img src="" alt="QR Code" id="qr-img">
+    <div class="url">xiaojushuju.pages.dev</div>
+    <div class="tip">用手机相机扫码即可访问</div>
+  </div>
 </div>
 
 <script>
@@ -292,6 +320,18 @@ function formatDate(d) {
   if (m.length < 2) m = '0' + m;
   if (day.length < 2) day = '0' + day;
   return y + '-' + m + '-' + day;
+}
+
+// 二维码
+function showQR() {
+  document.getElementById('qr-modal').classList.add('show');
+  var img = document.getElementById('qr-img');
+  if (!img.src) {
+    img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&bgcolor=ffffff&data=https://xiaojushuju.pages.dev/';
+  }
+}
+function hideQR(e) {
+  document.getElementById('qr-modal').classList.remove('show');
 }
 
 init();
