@@ -111,9 +111,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 @media (max-width:1024px){
   .qr-btn{bottom:14px;right:14px;width:40px;height:40px;font-size:18px}
 }
+
+/* 密码登录 */
+.login-overlay{position:fixed;inset:0;background:#f0f2f5;z-index:100;display:flex;align-items:center;justify-content:center}
+.login-card{background:#fff;border-radius:14px;padding:36px 28px 28px;width:90%;max-width:360px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.08)}
+.login-card .logo{font-size:36px;margin-bottom:8px}
+.login-card h2{font-size:18px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.login-card .sub{font-size:12px;color:#999;margin-bottom:24px}
+.login-card input{width:100%;padding:12px 14px;border:1.5px solid #e5e7eb;border-radius:8px;font-size:15px;text-align:center;outline:none;letter-spacing:4px;transition:border-color .2s}
+.login-card input:focus{border-color:#3b82f6}
+.login-card input.error{border-color:#d92d20;animation:shake .4s}
+.login-card .err-msg{font-size:12px;color:#d92d20;margin-top:8px;min-height:20px}
+.login-card button{width:100%;padding:12px;border:none;border-radius:8px;background:#1a56db;color:#fff;font-size:15px;font-weight:600;cursor:pointer;margin-top:12px;transition:background .15s}
+.login-card button:hover{background:#1e40af}
+.login-card button:active{background:#1e3a8a}
+.login-card .hint{font-size:11px;color:#bbb;margin-top:12px}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 </style>
 </head>
 <body>
+
+<!-- 密码登录 -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-card">
+    <div class="logo">&#9889;</div>
+    <h2>电士多运营日报</h2>
+    <div class="sub">请输入访问密码</div>
+    <input type="password" id="login-input" placeholder="输入密码" maxlength="20" onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="err-msg" id="login-error"></div>
+    <button onclick="doLogin()">确认</button>
+    <div class="hint">浏览器关闭前无需重复输入</div>
+  </div>
+</div>
 
 <div class="overlay" id="overlay" onclick="hideSidebar()"></div>
 
@@ -166,6 +195,41 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 </div>
 
 <script>
+// ===== 密码验证 =====
+var AUTH_HASH = '46126a670e2ecff2bd411a351b3e5cf8134ed0aeaf15648ecea357018012446a';
+
+async function sha256(msg) {
+  var buf = new TextEncoder().encode(msg);
+  var hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+}
+
+async function doLogin() {
+  var input = document.getElementById('login-input');
+  var errEl = document.getElementById('login-error');
+  var pw = input.value.trim();
+  if (!pw) { errEl.textContent = '请输入密码'; return; }
+  var h1 = await sha256(pw);
+  var h2 = await sha256(h1);
+  if (h2 === AUTH_HASH) {
+    sessionStorage.setItem('dashboard_auth', '1');
+    document.getElementById('login-overlay').style.display = 'none';
+    document.getElementById('login-input').value = '';
+  } else {
+    errEl.textContent = '密码错误';
+    input.classList.add('error');
+    setTimeout(function(){input.classList.remove('error')}, 400);
+  }
+}
+
+(function(){
+  if (sessionStorage.getItem('dashboard_auth') === '1') {
+    document.getElementById('login-overlay').style.display = 'none';
+  } else {
+    document.getElementById('login-input').focus();
+  }
+})();
+
 var reports = [];
 var currentIndex = -1;
 var isMobile = window.innerWidth <= 1024;
